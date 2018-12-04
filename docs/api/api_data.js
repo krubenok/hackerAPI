@@ -373,13 +373,6 @@ define({
               "group": "body",
               "type": "String",
               "optional": true,
-              "field": "passowrd",
-              "description": "<p>The password of the account.</p>"
-            },
-            {
-              "group": "body",
-              "type": "String",
-              "optional": true,
               "field": "birthDate",
               "description": "<p>a Date parsable string.</p>"
             },
