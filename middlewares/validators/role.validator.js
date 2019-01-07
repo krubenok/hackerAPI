@@ -8,6 +8,9 @@ module.exports = {
         VALIDATOR.routesValidator("body", "routes", false),
     ],
 
-
-
+    updateRoleValidator: [
+        VALIDATOR.alphaValidator("body", "roleName", false),
+        VALIDATOR.routesValidator("body", "addRoutes", true),
+        VALIDATOR.routesValidator("body", "removeRoutes", true)
+    ]
 };

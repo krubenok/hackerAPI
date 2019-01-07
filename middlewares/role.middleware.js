@@ -6,6 +6,9 @@ const Services = {
 const Constants = {
     Error: require("../constants/error.constant"),
 };
+const Middleware = {
+    Util: require("../middlewares/util.middleware"),
+};
 
 /**
  * @function parseRole
@@ -59,7 +62,64 @@ async function createRole(req, res, next) {
     }
 }
 
+async function updateRole(req, res, next) {
+    let role = addRoutes(req, next);
+    role = removeRoutes(req, next);
+
+    req.body.role = role;
+    next();
+}
+
+async function addRoutes(req, next) {
+    const role = await Services.Role.addRoutes({
+        name: req.body.roleName
+    }, req.body.roleDetails.addRoutes);
+
+    if (!role) {
+        return next({
+            status: 500,
+            message: Constants.Error.ROLE_UPDATE_500_MESSAGE,
+            data: {}
+        });
+    }
+
+    return role;
+}
+
+async function removeRoutes(req, next) {
+    const role = await Services.Role.removeRoutes({
+        name: req.body.roleName
+    }, req.body.roleDetails.removeRoutes);
+
+    if (!role) {
+        return next({
+            status: 500,
+            message: Constants.Error.ROLE_UPDATE_500_MESSAGE,
+            data: {}
+        });
+    }
+
+    return role;
+}
+
+function parsePatch(req, res, next) {
+    const roleDetails = {
+        name: req.body.roleName,
+        addRoutes: req.body.addRoutes,
+        removeRoutes: req.body.removeRoutes,
+    };
+
+    delete req.body.name;
+    delete req.body.addRoutes;
+    delete req.body.removeRoutes;
+
+    req.body.roleDetails = roleDetails;
+    return next();
+}
+
 module.exports = {
     parseRole: parseRole,
-    createRole: createRole,
+    parsePatch: parsePatch,
+    createRole: Middleware.Util.asyncMiddleware(createRole),
+    updateRole: Middleware.Util.asyncMiddleware(updateRole),
 };

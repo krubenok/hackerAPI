@@ -69,6 +69,18 @@ module.exports = {
             Controllers.Role.createdRole
         );
 
+        roleRouter.route("/").patch(
+            Middleware.Auth.ensureAuthenticated(),
+            Middleware.Auth.ensureAuthorized(),
+
+            Middleware.Validator.Role.patchRoleValidator,
+            Middleware.parseBody.middleware,
+            Middleware.Role.parsePatch,
+
+            Middleware.Role.updateRole,
+            Controllers.Role.updatedRole
+        );
+
         apiRouter.use("/role", roleRouter);
     }
 };

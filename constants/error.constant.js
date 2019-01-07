@@ -38,6 +38,7 @@ const EMAIL_500_MESSAGE = "Error while generating email";
 const GENERIC_500_MESSAGE = "Internal error";
 const LOGIN_500_MESSAGE = "Error while logging in";
 const ROLE_CREATE_500_MESSAGE = "Error while creating role";
+const ROLE_UPDATE_500_MESSAGE = "Error while updating role";
 
 module.exports = {
     ACCOUNT_404_MESSAGE: ACCOUNT_404_MESSAGE,
@@ -73,4 +74,5 @@ module.exports = {
     ROLE_CREATE_500_MESSAGE: ROLE_CREATE_500_MESSAGE,
     TEAM_NAME_409_MESSAGE: TEAM_NAME_409_MESSAGE,
     TEAM_JOIN_SAME_409_MESSAGE: TEAM_JOIN_SAME_409_MESSAGE,
+    ROLE_UPDATE_500_MESSAGE: ROLE_UPDATE_500_MESSAGE,
 };

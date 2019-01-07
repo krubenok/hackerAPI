@@ -57,9 +57,47 @@ function getAll() {
     return Role.find({}, logger.queryCallbackFactory(TAG, "role", {}));
 }
 
+/**
+ * @function addRoutes
+ * @param {*} query
+ * @param {route[]} addRoutes
+ * @return {DocumentQuery} The document query will resolve to role or null.
+ * @description Adds routes in addRoutes to a role specified by the query.
+ */
+function addRoutes(query, addRoutes) {
+    const TAG = `[Role Service # addRoutes ]:`;
+
+    return Role.findOneAndUpdate(query, {
+        $push: {
+            routes: addRoutes
+        }
+    });
+}
+
+/**
+ * @function removeRoutes
+ * @param {*} query
+ * @param {route[]} removeRoutes
+ * @return {DocumentQuery} The document query will resolve to role or null.
+ * @description removes routes in removeRoutes from a role specified by the query.
+ */
+function removeRoutes(query, removeRoutes) {
+    const TAG = `[Role Service # removeRoutes ]:`;
+
+    return Role.findOneAndUpdate(query, {
+        $pull: {
+            routes: removeRoutes
+        }
+    });
+}
+
+
+
 module.exports = {
     getRole: getRole,
     getById: getById,
     getAll: getAll,
     createRole: createRole,
+    addRoutes: addRoutes,
+    removeRoutes: removeRoutes,
 };

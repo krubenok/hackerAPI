@@ -159,6 +159,11 @@ const roleRoutes = {
     "post": {
         requestType: Constants.REQUEST_TYPES.POST,
         uri: "/api/role/",
+    },
+
+    "patch": {
+        requestType: Constants.REQUEST_TYPES.PATCH,
+        uri: "api/role",
     }
 };
 

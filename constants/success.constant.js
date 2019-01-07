@@ -26,6 +26,7 @@ const RESUME_UPLOAD = "Resume upload successful.";
 const RESUME_DOWNLOAD = "Resume download successful.";
 
 const ROLE_CREATE = "Role creation successful.";
+const ROLE_UPDATE = "Role update successful";
 
 const SEARCH_QUERY = "Query search successful. Returning results.";
 const SEARCH_NO_RESULTS = "Query search successful. No results found.";
@@ -67,6 +68,7 @@ module.exports = {
     RESUME_DOWNLOAD: RESUME_DOWNLOAD,
 
     ROLE_CREATE: ROLE_CREATE,
+    ROLE_UPDATE: ROLE_UPDATE,
 
     SEARCH_QUERY: SEARCH_QUERY,
     SEARCH_NO_RESULTS: SEARCH_NO_RESULTS,
